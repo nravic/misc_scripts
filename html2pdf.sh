@@ -1,9 +1,9 @@
-#wkhtmltopdf wrapper for multiple html input and other oddities
-#requires wkhtmltopdf with patched QT library
-#!bin/bash
+#!/bin/bash
 
 #----------------------------------------
 #AUTHOR - Niranjan Ravichandra, @nravic
+#wkhtmltopdf wrapper for multiple html input and other oddities
+#requires wkhtmltopdf with patched QT library
 #----------------------------------------
 
 echo "Enter webpage url to download and save as pdf, followed by [ENTER]:"
