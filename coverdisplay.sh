@@ -1,24 +1,32 @@
 #!/bin/bash
+
 #----------------------------------------
 #AUTHOR - Niranjan Ravichandra, @nravic
 #display cover w/ feh, rotates as slideshow. Place under ncmpcpp "execute_on_song_change."           
 #---------------------------------------
 
+killall -9 feh > /dev/null 2&>1 #kill all instances of feh at the beginning of script
 
-pkill feh #kill all instances of feh at the beginning of script
+coverdisplay ()
+{
+    killall -g feh > /dev/null 2&>1
+    MUSIC_DIR=/mnt/windows/Users/niranjanr/Music/ #mpd music_dir 
+    
+    tmp_filepath=$(mpc -f %file%) #grab path of currently playing file
+    #bash string manipulation shenanigans
+    muspath=${tmp_filepath%%[*}
+    filepath=$MUSIC_DIR$muspath
+    path=${filepath//" "/"\ "}
+    PATH_NO_TRAIL=$(echo "$path" | xargs)
 
-MUSIC_DIR=/mnt/windows/Users/niranjanr/Music/ #mpd music_dir 
+    feh -x -Z "$PATH_NO_TRAIL" > /dev/null 2&>1
+    #kill feh on song change
+    if mpc current --wait > /dev/null 2&>1
+    then
+	killall -g feh > /dev/null 2&>1
+	feh -x -Z "$PATH_NO_TRAIL" >/dev/null 2&>1
+    fi
+}
 
-tmp_filepath=$(mpc -f %file%) #grab path of currently playing file
-#bash string manipulation shenanigans
-muspath=${tmp_filepath%%[*}
-filepath=$MUSIC_DIR$muspath
-path=${filepath//" "/"\ "}
-PATH_NO_TRAIL=$(echo "$path" | xargs)
-
-feh -Z --scale-down "$PATH_NO_TRAIL"
-
-
-
-
-	   
+coverdisplay
+exit
