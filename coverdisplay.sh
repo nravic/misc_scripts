@@ -9,7 +9,7 @@ killall -9 feh > /dev/null 2&>1 #kill all instances of feh at the beginning of s
 
 coverdisplay ()
 {
-    killall -g feh > /dev/null 2&>1
+    killall -g feh > /dev/null 2&>1 
     MUSIC_DIR=/mnt/windows/Users/niranjanr/Music/ #mpd music_dir 
     
     tmp_filepath=$(mpc -f %file%) #grab path of currently playing file
@@ -19,12 +19,12 @@ coverdisplay ()
     path=${filepath//" "/"\ "}
     PATH_NO_TRAIL=$(echo "$path" | xargs)
 
-    feh -x -Z "$PATH_NO_TRAIL" > /dev/null 2&>1
+    feh -x -g 400x400 -Z "$PATH_NO_TRAIL" > /dev/null 2&>1
     #kill feh on song change
     if mpc current --wait > /dev/null 2&>1
     then
-	killall -g feh > /dev/null 2&>1
-	feh -x -Z "$PATH_NO_TRAIL" >/dev/null 2&>1
+	killall -g feh > /dev/null 
+	feh -x -g 400x400 -Z "$PATH_NO_TRAIL" >/dev/null 2&>1 
     fi
 }
 
