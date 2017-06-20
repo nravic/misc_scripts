@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#----------------------------------------
-#AUTHOR - Niranjan Ravichandra, @nravic
-#display cover w/ feh, rotates as slideshow. Place under ncmpcpp "execute_on_song_change."           
-#---------------------------------------
+########################################################################################################
+# AUTHOR - Niranjan Ravichandra, @nravic							       #
+# display cover w/ feh, rotates as slideshow. Place under ncmpcpp "execute_on_song_change."            #
+########################################################################################################
 
 killall -9 feh > /dev/null 2&>1 #kill all instances of feh at the beginning of script
 
