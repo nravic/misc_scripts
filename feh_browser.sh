@@ -1,5 +1,9 @@
 #!/bin/bash
 
+###########################################################################################################
+# Pulled from the Arch wiki. All credit goes to the good folks over there. Script is essentially a better #
+# feh browser. I added the -d option to display the filename. 						  #
+###########################################################################################################
 shopt -s nullglob
 
 if [[ ! -f $1 ]]; then
